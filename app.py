@@ -26,6 +26,18 @@ def get_photos(category):
     
     return jsonify(images)
 
+# --- DEBUG TOOL (DELETE THIS LATER) ---
+@app.route('/debug')
+def debug_server():
+    import os
+    file_structure = []
+    # Walk through the entire folder structure
+    for root, dirs, files in os.walk('.'):
+        for name in files:
+            # Add the full path to the list
+            file_structure.append(os.path.join(root, name))
+    return jsonify(file_structure)
+
 if __name__ == '__main__':
     print("Server is running at http://localhost:5000")
     app.run(debug=True, port=5000)
