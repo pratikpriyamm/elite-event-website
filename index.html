@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elite Events | We Plan, You Party</title>
+    
+    <link rel="stylesheet" href="style.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body>
+
+    <video autoplay muted loop playsinline class="back-video">
+        <source src="videos/party.mp4" type="video/mp4">
+    </video>
+
+    <nav class="navbar">
+        <div class="logo">EliteEvents.</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <header id="home" class="hero">
+        <div class="hero-content" data-aos="fade-up">
+            <h1>We Plan, You Party</h1>
+            <p>Premium event management for weddings, corporate, and sports.</p>
+            <button onclick="scrollToContact()">Book Now</button>
+        </div>
+    </header>
+
+    <section id="services" class="services">
+        <h2 data-aos="fade-down">Our Services</h2>
+        
+        <div class="service-container">
+            <div class="card" data-aos="fade-up" data-aos-delay="100">
+                <div class="icon-box"><i class="fas fa-ring"></i></div>
+                <h3>Weddings</h3>
+                <p>Full planning & coordination for your dream day.</p>
+            </div>
+            <div class="card" data-aos="fade-up" data-aos-delay="200">
+                <div class="icon-box"><i class="fas fa-briefcase"></i></div>
+                <h3>Corporate</h3>
+                <p>Conferences, product launches, and galas.</p>
+            </div>
+            <div class="card" data-aos="fade-up" data-aos-delay="300">
+                <div class="icon-box"><i class="fas fa-birthday-cake"></i></div>
+                <h3>Birthdays</h3>
+                <p>Memorable private parties and celebrations.</p>
+            </div>
+        </div>
+
+        <div class="service-container" style="margin-top: 30px;">
+            <div class="card" data-aos="fade-up" data-aos-delay="400">
+                <div class="icon-box"><i class="fas fa-tools"></i></div>
+                <h3>Fabrication</h3>
+                <p>Custom stage designs, stalls, and structural setups.</p>
+            </div>
+            <div class="card" data-aos="fade-up" data-aos-delay="500">
+                <div class="icon-box"><i class="fas fa-running"></i></div>
+                <h3>Sports</h3>
+                <p>Tournament management and sports logistics.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio" class="portfolio">
+        <h2 data-aos="fade-down">Recent Moments</h2>
+        
+        <div class="portfolio-grid">
+            <div class="portfolio-item" data-aos="zoom-in" onclick="openGallery('wedding')">
+                <img id="cover-wedding" src="images/wedding/1.jpg" alt="Wedding">
+                <div class="overlay">
+                    <h3>Royal Weddings</h3>
+                </div>
+            </div>
+
+            <div class="portfolio-item" data-aos="zoom-in" onclick="openGallery('corporate')">
+                <img id="cover-corporate" src="images/corporate/1.jpg" alt="Corporate">
+                <div class="overlay">
+                    <h3>Corporate Summits</h3>
+                </div>
+            </div>
+
+            <div class="portfolio-item" data-aos="zoom-in" onclick="openGallery('party')">
+                <img id="cover-party" src="images/party/1.jpg" alt="Party">
+                <div class="overlay">
+                    <h3>Private Parties</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="portfolio-grid" style="margin-top: 30px;">
+            <div class="portfolio-item" data-aos="zoom-in" onclick="openGallery('fabrication')">
+                <img id="cover-fabrication" src="images/fabrication/1.jpg" alt="Fabrication">
+                <div class="overlay">
+                    <h3>Fabrication Works</h3>
+                </div>
+            </div>
+
+            <div class="portfolio-item" data-aos="zoom-in" onclick="openGallery('sports')">
+                <img id="cover-sports" src="images/sports/1.jpg" alt="Sports">
+                <div class="overlay">
+                    <h3>Sports Events</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <h2 data-aos="fade-down">Contact Us</h2>
+        <form id="contactForm" data-aos="fade-up">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" placeholder="Tell us about your event..." rows="4" required></textarea>
+            
+            <input type="hidden" name="_subject" value="New Event Inquiry!">
+            <input type="hidden" name="_captcha" value="false">
+            
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+<footer>
+        <p>
+            For any technical support or copyright issue reach out to me at 
+            <a href="mailto:patrick.singhh.07@gmail.com">patrick.singhh.07@gmail.com</a> 
+            or DM me on the gram 
+            <a href="https://instagram.com/whu.shan.clan" target="_blank">@whu.shan.clan</a>
+        </p>
+    </footer>
+
+    <div id="galleryModal" class="modal">
+        <span class="close-btn" onclick="closeGallery()">&times;</span>
+        
+        <a class="prev" onclick="changeImage(-1)">&#10094;</a>
+        <a class="next" onclick="changeImage(1)">&#10095;</a>
+
+        <div class="modal-content">
+            <img id="galleryImage" src="" alt="Gallery Photo">
+            <div id="caption"></div>
+        </div>
+    </div>
+
+    <a href="mailto:cricketx718@gmail.com" class="social-btn email-btn" title="Send Email">
+        <i class="fas fa-envelope"></i>
+    </a>
+
+    <a href="https://instagram.com/whu.shan.clan" class="social-btn instagram-btn" target="_blank">
+        <i class="fab fa-instagram"></i>
+    </a>
+
+    <a href="https://wa.me/918809454342" class="social-btn whatsapp-btn" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
+
+</body>
+</html>

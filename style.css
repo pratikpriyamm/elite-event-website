@@ -1,0 +1,523 @@
+/* =========================================
+   1. GLOBAL SETTINGS & FONTS
+   ========================================= */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Lato', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    overflow-x: hidden;
+}
+
+h1, h2, h3, .logo {
+    font-family: 'Playfair Display', serif;
+}
+
+/* =========================================
+   2. CONTINUOUS VIDEO BACKGROUND
+   ========================================= */
+.back-video {
+    position: fixed; /* Locks video to the screen */
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: -100; /* Puts it behind EVERYTHING */
+    filter: brightness(0.4); /* Darkens video so white text is readable */
+    object-fit: cover;
+}
+
+/* =========================================
+   3. NAVIGATION BAR
+   ========================================= */
+.navbar {
+    background-color: rgba(26, 26, 26, 0.9); /* See-through Dark Grey */
+    color: white;
+    padding: 15px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+/* =========================================
+   4. HERO SECTION
+   ========================================= */
+.hero {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    background: transparent; /* Video shows through */
+}
+
+.hero h1 {
+    font-size: 4rem;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.hero button {
+    padding: 12px 30px;
+    background-color: #d4af37; /* Gold */
+    color: white;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 20px;
+    transition: background 0.3s;
+}
+
+.hero button:hover {
+    background-color: #b5952f;
+}
+
+/* =========================================
+   5. SERVICES SECTION
+   ========================================= */
+#services {
+    padding: 80px 20px;
+    text-align: center;
+    background: transparent;
+}
+
+#services h2 {
+    color: white;
+    margin-bottom: 40px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+}
+
+.service-container {
+    display: flex;
+    justify-content: center; /* Centers the cards */
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+/* Cards need a background to be readable over the video */
+/* --- GLASSMORPHISM CARDS --- */
+.card {
+    /* 1. The Glass Effect */
+    background: rgba(255, 255, 255, 0.1); /* Very transparent white */
+    backdrop-filter: blur(10px);           /* The Blur Magic */
+    -webkit-backdrop-filter: blur(10px);   /* Safari support */
+    
+    /* 2. Shape & Border */
+    padding: 40px 20px;
+    width: 300px;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Thin glass edge */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    
+    /* 3. Text Styling */
+    color: white; /* Text must be white on glass */
+    text-align: center;
+    position: relative; /* Needed for the gold line */
+    overflow: hidden;
+    transition: all 0.4s ease;
+}
+
+/* Text readability improvements */
+.card h3 {
+    margin-top: 15px;
+    font-size: 1.5rem;
+    color: #d4af37; /* Gold headings */
+}
+
+.card p {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.8); /* Slightly dimmed white text */
+}
+
+/* --- THE ICONS --- */
+.icon-box {
+    font-size: 40px;
+    color: white;
+    margin-bottom: 10px;
+    transition: transform 0.4s;
+}
+
+/* --- HOVER ANIMATIONS --- */
+.card:hover {
+    transform: translateY(-10px); /* Floats up */
+    background: rgba(255, 255, 255, 0.15); /* Gets slightly brighter */
+    border-color: rgba(255, 255, 255, 0.5); /* Border glows */
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.2); /* Gold shadow glow */
+}
+
+.card:hover .icon-box {
+    transform: scale(1.2) rotate(10deg); /* Icon pops out */
+    color: #d4af37; /* Icon turns gold */
+}
+
+/* --- THE GOLD LINE ANIMATION --- */
+/* A line that sits at the top and grows when you hover */
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #d4af37, transparent);
+    transform: scaleX(0); /* Hidden by default */
+    transform-origin: left;
+    transition: transform 0.5s ease;
+}
+
+.card:hover::before {
+    transform: scaleX(1); /* Swipes across on hover */
+}
+
+/* =========================================
+   6. PORTFOLIO SECTION
+   ========================================= */
+.portfolio {
+    padding: 80px 20px;
+    text-align: center;
+    background: transparent;
+}
+
+.portfolio h2 {
+    color: white;
+    margin-bottom: 40px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+}
+
+/* Layout for Row 1 and Row 2 */
+.portfolio-grid {
+    display: flex;             /* FLEXBOX allows perfect centering */
+    justify-content: center;   /* Center align items */
+    gap: 20px;
+    flex-wrap: wrap;           /* Stacks on mobile */
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* --- PORTFOLIO ITEM (High Contrast Gold) --- */
+.portfolio-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    width: 300px;
+    height: 250px;
+    cursor: pointer;
+    
+    /* Default: Thin white border */
+    border: 2px solid rgba(255,255,255,0.3); 
+    
+    /* Make the border transition smooth */
+    transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+/* 1. THE FIX: Solid Gold Border (No blurry shadow) */
+.portfolio-item:hover {
+    border-color: #d4af37; /* Solid Gold */
+    border-width: 3px;     /* Slightly thicker */
+    transform: translateY(-5px); /* Moves up slightly */
+}
+
+/* 2. THE CONTRAST: Darken the image so Gold pops */
+.portfolio-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease, filter 0.3s ease;
+}
+
+.portfolio-item:hover img {
+    transform: scale(1.1); /* Zoom */
+    filter: brightness(0.6); /* Darkens photo to 60% brightness */
+}
+
+/* 3. GOLD SWIPE (Kept the same) */
+.portfolio-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px; /* Slightly thicker line */
+    background: #d4af37; /* Solid Gold Line */
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+    z-index: 10;
+}
+
+.portfolio-item:hover::before {
+    transform: scaleX(1);
+}
+
+/* --- OVERLAY (Stronger Text) --- */
+.overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 15%;         
+    background: rgba(0, 0, 0, 0.9); /* Almost solid black */
+    color: white;
+    display: flex;       
+    align-items: center; 
+    justify-content: center;
+    transition: height 0.3s ease;
+    z-index: 5;
+    
+    /* Top border on the overlay for extra detail */
+    border-top: 1px solid #d4af37; 
+}
+
+.overlay h3 {
+    margin: 0;
+    font-size: 1.1rem; 
+    font-weight: 700;
+    letter-spacing: 1.5px; /* Wider letters look more premium */
+    color: #d4af37; 
+    text-transform: uppercase;
+}
+
+.portfolio-item:hover .overlay {
+    height: 22%; /* Grows a bit more */
+}
+
+/* =========================================
+   7. CONTACT SECTION
+   ========================================= */
+.contact {
+    padding: 80px 20px;
+    text-align: center;
+    background: transparent;
+}
+
+.contact h2 {
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    margin: 30px auto;
+    gap: 15px;
+    background: rgba(0, 0, 0, 0.6); /* Dark see-through box */
+    padding: 30px;
+    border-radius: 10px;
+}
+
+input, textarea {
+    padding: 15px;
+    border-radius: 5px;
+    border: none;
+    font-family: inherit;
+}
+
+button[type="submit"] {
+    background-color: #d4af37;
+    color: white;
+    padding: 15px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1rem;
+    border-radius: 5px;
+}
+
+/* =========================================
+   8. SOCIAL BUTTONS (30% Smaller)
+   ========================================= */
+.social-btn {
+    position: fixed;
+    right: 30px;              
+    width: 42px;              /* Resized to 42px */
+    height: 42px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 24px;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+    z-index: 1000;
+    text-decoration: none;
+    transition: transform 0.3s;
+}
+
+.social-btn:hover {
+    transform: scale(1.1);
+}
+
+/* WhatsApp */
+.whatsapp-btn {
+    bottom: 30px;
+    background-color: #25d366;
+}
+
+/* Instagram (Stacked Above) */
+.instagram-btn {
+    bottom: 85px; 
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+}
+
+/* =========================================
+   9. GALLERY MODAL (Aspect Ratio Fix)
+   ========================================= */
+.modal {
+    display: none; 
+    position: fixed;
+    z-index: 2000; 
+    padding-top: 50px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.95); 
+}
+
+/* The Box */
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    width: auto;      /* Let image dictate width */
+    max-width: 95%;   /* Max screen width constraint */
+    text-align: center;
+}
+
+/* The Image */
+.modal-content img {
+    width: auto;      /* Keep aspect ratio */
+    height: auto;     /* Keep aspect ratio */
+    
+    max-width: 100%; 
+    max-height: 80vh; /* Never taller than screen */
+    
+    object-fit: contain; /* Prevent Zooming/Stretching */
+    
+    border: 3px solid white;
+    border-radius: 5px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    animation: zoom 0.4s;
+}
+
+/* Controls */
+#caption {
+    margin-top: 10px;
+    color: #ccc;
+    font-size: 1.1rem;
+    font-family: 'Lato', sans-serif;
+    letter-spacing: 1px;
+}
+
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -50px;
+    color: white;
+    font-weight: bold;
+    font-size: 30px;
+    transition: 0.6s ease;
+    user-select: none;
+    border-radius: 0 3px 3px 0;
+}
+
+.next {
+    right: 10px;
+    border-radius: 3px 0 0 3px;
+}
+
+.prev {
+    left: 10px;
+}
+
+.prev:hover, .next:hover {
+    background-color: rgba(212, 175, 55, 0.8);
+}
+
+@keyframes zoom {
+    from {transform:scale(0)} 
+    to {transform:scale(1)}
+}
+/* --- EMAIL BUTTON (NEW) --- */
+.email-btn {
+    bottom: 140px; /* Calculated: 85px (Insta) + 42px (Height) + 13px (Gap) */
+    background-color: #DB4437; /* Official Gmail Red */
+    font-size: 20px; /* Icon size slightly adjusted for envelope */
+}
+/* --- FOOTER (Technical Support) --- */
+footer {
+    text-align: right;
+    
+    padding: 20px 50px 2px 50px; 
+    
+    font-size: 0.75rem; 
+    color: rgba(255, 255, 255, 0.5); 
+    background: transparent;
+    position: relative;
+    z-index: 10;
+    margin-top: 20px;
+}
+
+/* Link Styling */
+footer a {
+    color: #aa850d;           /* Gold color for the links */
+    text-decoration: none;    /* Removes the underline */
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+footer a:hover {
+    color: white;             /* Turns white when you hover over it */
+    text-decoration: underline;
+}
+
+/* Mobile Tweak: On phones, center it because right-align looks weird on small screens */
+@media (max-width: 768px) {
+    footer {
+        text-align: center;
+        padding: 20px;
+    }
+}
