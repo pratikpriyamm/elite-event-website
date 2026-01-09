@@ -20,15 +20,26 @@ h1, h2, h3, .logo {
 /* =========================================
    2. CONTINUOUS VIDEO BACKGROUND
    ========================================= */
+/* =========================================
+   2. CONTINUOUS VIDEO BACKGROUND (UPDATED)
+   ========================================= */
 .back-video {
-    position: fixed; /* Locks video to the screen */
-    right: 0;
-    bottom: 0;
-    min-width: 100%;
+    position: fixed;
+    top: 50%;  /* Move to middle of screen vertical */
+    left: 50%; /* Move to middle of screen horizontal */
+    transform: translate(-50%, -50%); /* Perfectly center it */
+    
+    /* Ensure it covers the screen */
+    min-width: 100%; 
     min-height: 100%;
-    z-index: -100; /* Puts it behind EVERYTHING */
-    filter: brightness(0.4); /* Darkens video so white text is readable */
-    object-fit: cover;
+    
+    /* Ensure aspect ratio stays correct (no stretching) */
+    width: auto; 
+    height: auto;
+    
+    z-index: -100;
+    filter: brightness(0.4); 
+    object-fit: cover; /* Ensures no black bars */
 }
 
 /* =========================================
@@ -519,5 +530,125 @@ footer a:hover {
     footer {
         text-align: center;
         padding: 20px;
+    }
+}
+/* =========================================
+   10. MEDIA QUERIES (MAKE IT MOBILE FRIENDLY)
+   Paste this at the very bottom of your CSS
+   ========================================= */
+
+/* --- TABLETS & SMALL LAPTOPS (Max-Width: 1024px) --- */
+@media screen and (max-width: 1024px) {
+    .hero h1 {
+        font-size: 3rem; /* Shrink title slightly */
+    }
+
+    .navbar {
+        padding: 15px 30px; /* Reduce side padding */
+    }
+
+    .card, .portfolio-item {
+        width: 45%; /* Show 2 cards per row instead of fixed pixel width */
+        min-width: 280px; /* Stop them from getting too skinny */
+    }
+}
+
+/* --- MOBILE PHONES (Max-Width: 768px) --- */
+@media screen and (max-width: 768px) {
+    
+    /* 1. Global Layout Fixes */
+    body {
+        overflow-x: hidden; /* Prevent horizontal scrolling */
+    }
+
+    /* 2. VIDEO ADJUSTMENT (Your Request) */
+    .back-video {
+        /* Calculates exact center + 50px down */
+        top: calc(50% + 50px); 
+        
+        /* Increases height to ensuring moving it down doesn't leave a gap at the top */
+        min-height: 120%; 
+    }
+
+    /* 3. Navigation Bar */
+    .navbar {
+        flex-direction: column; /* Stack Logo and Links */
+        padding: 15px;
+        background-color: rgba(26, 26, 26, 0.95); /* Darker for readability */
+    }
+
+    .nav-links {
+        margin-top: 15px;
+        gap: 15px;
+        flex-wrap: wrap; /* Allow links to wrap */
+        justify-content: center;
+        padding: 0;
+    }
+
+    .nav-links a {
+        font-size: 0.8rem; 
+    }
+
+    /* 4. Hero Section */
+    .hero h1 {
+        font-size: 2.2rem; 
+        padding: 0 10px;
+    }
+
+    .hero button {
+        width: 80%; 
+        max-width: 300px;
+    }
+
+    /* 5. Cards & Portfolio (Stacking) */
+    .service-container, .portfolio-grid {
+        flex-direction: column; /* Stack items vertically */
+        align-items: center;
+    }
+
+    .card, .portfolio-item {
+        width: 90% !important; /* Force full width on mobile */
+        max-width: 350px; 
+        margin-bottom: 20px;
+    }
+
+    /* 6. Contact Form */
+    form {
+        width: 90%; 
+        margin: 20px auto;
+        padding: 20px;
+    }
+
+    /* 7. Social Buttons */
+    .social-btn {
+        right: 15px; 
+        width: 38px; 
+        height: 38px;
+        font-size: 20px;
+    }
+    
+    .whatsapp-btn { bottom: 20px; }
+    .instagram-btn { bottom: 70px; }
+    .email-btn { bottom: 120px; }
+
+    /* 8. Modal / Gallery Fixes */
+    .modal-content {
+        width: 95%; 
+    }
+    
+    .prev, .next {
+        font-size: 20px; 
+        padding: 10px;
+    }
+}
+
+/* --- SMALL MOBILES (iPhone SE / Folded Phones) --- */
+@media screen and (max-width: 380px) {
+    .hero h1 {
+        font-size: 1.8rem;
+    }
+    
+    .nav-links {
+        gap: 10px; 
     }
 }

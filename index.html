@@ -8,15 +8,15 @@
     <link rel="stylesheet" href="style.css">
 
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 <body>
 
-    <video autoplay muted loop playsinline class="back-video">
-        <source src="videos/party.mp4" type="video/mp4">
+    <video autoplay muted loop playsinline preload="auto" class="back-video" poster="images/video-poster.jpg">
+    <source src="videos/party.mp4" type="video/mp4">
     </video>
 
     <nav class="navbar">
@@ -30,7 +30,7 @@
     </nav>
 
     <header id="home" class="hero">
-        <div class="hero-content" data-aos="fade-up">
+        <div class="hero-content" data-aos="fade-up" data-aos-offset="100">
             <h1>We Plan, You Party</h1>
             <p>Premium event management for weddings, corporate, and sports.</p>
             <button onclick="scrollToContact()">Book Now</button>
@@ -77,21 +77,21 @@
         
         <div class="portfolio-grid">
             <div class="portfolio-item" data-aos="zoom-in" onclick="openGallery('wedding')">
-                <img id="cover-wedding" src="images/wedding/1.jpg" alt="Wedding">
+                <img id="cover-wedding" src="images/wedding/1.jpg" alt="Wedding Cover">
                 <div class="overlay">
                     <h3>Royal Weddings</h3>
                 </div>
             </div>
 
             <div class="portfolio-item" data-aos="zoom-in" onclick="openGallery('corporate')">
-                <img id="cover-corporate" src="images/corporate/1.jpg" alt="Corporate">
+                <img id="cover-corporate" src="images/corporate/1.jpg" alt="Corporate Cover">
                 <div class="overlay">
                     <h3>Corporate Summits</h3>
                 </div>
             </div>
 
             <div class="portfolio-item" data-aos="zoom-in" onclick="openGallery('party')">
-                <img id="cover-party" src="images/party/1.jpg" alt="Party">
+                <img id="cover-party" src="images/party/1.jpg" alt="Party Cover">
                 <div class="overlay">
                     <h3>Private Parties</h3>
                 </div>
@@ -100,14 +100,14 @@
 
         <div class="portfolio-grid" style="margin-top: 30px;">
             <div class="portfolio-item" data-aos="zoom-in" onclick="openGallery('fabrication')">
-                <img id="cover-fabrication" src="images/fabrication/1.jpg" alt="Fabrication">
+                <img id="cover-fabrication" src="images/fabrication/1.jpg" alt="Fabrication Cover">
                 <div class="overlay">
                     <h3>Fabrication Works</h3>
                 </div>
             </div>
 
             <div class="portfolio-item" data-aos="zoom-in" onclick="openGallery('sports')">
-                <img id="cover-sports" src="images/sports/1.jpg" alt="Sports">
+                <img id="cover-sports" src="images/sports/1.jpg" alt="Sports Cover">
                 <div class="overlay">
                     <h3>Sports Events</h3>
                 </div>
@@ -129,7 +129,7 @@
         </form>
     </section>
 
-<footer>
+    <footer>
         <p>
             For any technical support or copyright issue reach out to me at 
             <a href="mailto:patrick.singhh.07@gmail.com">patrick.singhh.07@gmail.com</a> 
@@ -164,6 +164,13 @@
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="script.js"></script>
+    
+    <script>
+        AOS.init({
+            duration: 1000, // Animation speed
+            once: true,     // Animation only happens once (better for mobile scroll)
+        });
+    </script>
 
 </body>
 </html>
